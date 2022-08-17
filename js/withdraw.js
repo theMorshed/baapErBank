@@ -1,4 +1,4 @@
-document.getElementById('btn-withdraw').addEventListener('click', function(){
+document.getElementById('btn-withdraw').addEventListener('click', function () {
     // get withdraw input field and value of his
     const withdrawInputField = document.getElementById('input-withdraw');
     const withdrawInputFieldValue = withdrawInputField.value;
@@ -8,19 +8,24 @@ document.getElementById('btn-withdraw').addEventListener('click', function(){
         return;
     }
     const withdrawValue = parseFloat(withdrawInputFieldValue);
-    
+
     // get withdraw display box
     const withdrawDisplayBox = document.getElementById('withdraw');
     const withdrawDisplayOldValue = withdrawDisplayBox.innerText;
     const withdrawDispalyValue = parseFloat(withdrawDisplayOldValue);
-    
+
     // calculate the withdraw and total
     const balanceDisplayBox = document.getElementById('balance');
     const balanaceBoxValue = balanceDisplayBox.innerText;
     const balanceOldValue = parseFloat(balanaceBoxValue);
-    withdrawDisplayBox.innerText = withdrawValue + withdrawDispalyValue;
-    const balance = balanceOldValue - withdrawValue;
-    balanceDisplayBox.innerText = balance;
+    if (withdrawValue > balanceOldValue) {
+        alert('You dont have enough money to withdraw!!!');
+    }
+    else {
+        withdrawDisplayBox.innerText = withdrawValue + withdrawDispalyValue;
+        const balance = balanceOldValue - withdrawValue;
+        balanceDisplayBox.innerText = balance;
+    }
 
     // clear the field 
     withdrawInputField.value = '';
